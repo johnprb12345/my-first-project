@@ -1,0 +1,992 @@
+<DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Vocabulary Master - Học Từ Vựng IELTS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* ==================== BOX 1: HEADER ==================== */
+        .header {
+            background: white;
+            padding: 40px 60px;              /* PADDING: 40px trên/dưới, 60px trái/phải */
+            margin: 0 auto 50px;              /* MARGIN: 0 trên, auto căn giữa, 50px dưới */
+            max-width: 1400px;
+            border-radius: 20px;
+            border: 5px solid #1e3c72;        /* BORDER: 5px xanh navy */
+            border-bottom: 10px solid #2a5298; /* BORDER-BOTTOM: 10px dày hơn */
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #1e3c72;
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .header .subtitle {
+            color: #2a5298;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 3px solid #e0e7ff;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2a5298;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .box-info {
+            background: #fff9e6;
+            border: 2px dashed #f39c12;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #856404;
+            text-align: left;
+        }
+
+        .box-info strong {
+            color: #f39c12;
+        }
+
+        /* ==================== BOX 2: TOPIC SELECTOR ==================== */
+        .topic-selector {
+            background: white;
+            padding: 35px;                    /* PADDING: 35px */
+            margin: 0 auto 50px;              /* MARGIN: 0 auto 50px */
+            max-width: 1400px;
+            border-radius: 20px;
+            border: 4px solid #2a5298;        /* BORDER: 4px */
+            border-left: 8px solid #1e3c72;   /* BORDER-LEFT: 8px accent */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .topic-selector h2 {
+            color: #1e3c72;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #2a5298;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .topic-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 25px 20px;               /* PADDING: 25px trên/dưới, 20px trái/phải */
+            margin: 5px;                      /* MARGIN: 5px */
+            border: 3px solid #dee2e6;        /* BORDER: 3px */
+            border-left: 6px solid #2a5298;   /* BORDER-LEFT: 6px accent */
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(42, 82, 152, 0.3);
+            border-left-color: #1e3c72;
+        }
+
+        .topic-card.active {
+            background: linear-gradient(135deg, #2a5298, #1e3c72);
+            color: white;
+            border-color: #1e3c72;
+        }
+
+        .topic-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .topic-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .topic-card p {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        /* ==================== BOX 3: FLASHCARDS SECTION ==================== */
+        .flashcards-section {
+            background: white;
+            padding: 40px;                    /* PADDING: 40px */
+            margin: 0 auto 50px;              /* MARGIN: 0 auto 50px */
+            max-width: 1400px;
+            border-radius: 20px;
+            border: 4px solid #1e3c72;        /* BORDER: 4px */
+            border-top: 10px solid #2a5298;   /* BORDER-TOP: 10px accent */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .flashcards-section h2 {
+            color: #1e3c72;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #2a5298;
+        }
+
+        .flashcard-container {
+            perspective: 1000px;
+            max-width: 600px;
+            margin: 30px auto;
+        }
+
+        .flashcard {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 60px 40px;               /* PADDING: 60px trên/dưới, 40px trái/phải */
+            margin: 20px auto;                /* MARGIN: 20px auto */
+            border: 6px solid #764ba2;        /* BORDER: 6px */
+            border-radius: 20px;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front,
+        .flashcard-back {
+            backface-visibility: hidden;
+            position: absolute;
+            width: 100%;
+        }
+
+        .flashcard-back {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-word {
+            color: white;
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .flashcard-phonetic {
+            color: #e0e7ff;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .flashcard-type {
+            color: #ffd700;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .flashcard-definition {
+            color: white;
+            font-size: 1.4em;
+            line-height: 1.8;
+        }
+
+        .flashcard-example {
+            color: #e0e7ff;
+            font-size: 1.1em;
+            font-style: italic;
+            margin-top: 20px;
+        }
+
+        .flashcard-controls {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        /* ==================== BOX 4: QUIZ SECTION ==================== */
+        .quiz-section {
+            background: white;
+            padding: 40px;                    /* PADDING: 40px */
+            margin: 0 auto 50px;              /* MARGIN: 0 auto 50px */
+            max-width: 1400px;
+            border-radius: 20px;
+            border: 4px solid #2a5298;        /* BORDER: 4px */
+            border-left: 8px solid #1e3c72;   /* BORDER-LEFT: 8px accent */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .quiz-section h2 {
+            color: #1e3c72;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #2a5298;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .question-card {
+            background: #f8f9fa;
+            padding: 30px;                    /* PADDING: 30px */
+            margin-bottom: 25px;              /* MARGIN-BOTTOM: 25px */
+            border: 3px solid #dee2e6;        /* BORDER: 3px */
+            border-top: 6px solid #2a5298;    /* BORDER-TOP: 6px accent */
+            border-radius: 15px;
+        }
+
+        .question-text {
+            color: #1e3c72;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .options-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .option-btn {
+            background: white;
+            padding: 18px 25px;               /* PADDING: 18px trên/dưới, 25px trái/phải */
+            margin: 0;                        /* MARGIN: 0 */
+            border: 3px solid #dee2e6;        /* BORDER: 3px */
+            border-radius: 10px;
+            font-size: 1.1em;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option-btn:hover {
+            background: #e9ecef;
+            border-color: #2a5298;
+            transform: translateX(10px);
+        }
+
+        .option-btn.correct {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .option-btn.incorrect {
+            background: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+
+        .option-btn.disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        /* ==================== BOX 5: VOCABULARY LIST ==================== */
+        .vocab-list-section {
+            background: white;
+            padding: 40px;                    /* PADDING: 40px */
+            margin: 0 auto 50px;              /* MARGIN: 0 auto 50px */
+            max-width: 1400px;
+            border-radius: 20px;
+            border: 4px solid #1e3c72;        /* BORDER: 4px */
+            border-top: 10px solid #2a5298;   /* BORDER-TOP: 10px accent */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .vocab-list-section h2 {
+            color: #1e3c72;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #2a5298;
+        }
+
+        .vocab-item {
+            background: #f8f9fa;
+            padding: 25px 30px;               /* PADDING: 25px trên/dưới, 30px trái/phải */
+            margin-bottom: 20px;              /* MARGIN-BOTTOM: 20px */
+            border: 2px solid #dee2e6;        /* BORDER: 2px */
+            border-left: 6px solid #2a5298;   /* BORDER-LEFT: 6px accent */
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .vocab-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-left-color: #1e3c72;
+        }
+
+        .vocab-word {
+            color: #1e3c72;
+            font-size: 1.6em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .vocab-phonetic {
+            color: #6c757d;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+        }
+
+        .vocab-definition {
+            color: #495057;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .vocab-example {
+            color: #6c757d;
+            font-style: italic;
+            padding-left: 15px;
+            border-left: 3px solid #2a5298;
+        }
+
+        /* ==================== BOX 6: FOOTER ==================== */
+        .footer {
+            background: white;
+            padding: 40px 60px;               /* PADDING: 40px trên/dưới, 60px trái/phải */
+            margin: 50px auto 0;              /* MARGIN: 50px trên, auto căn giữa, 0 dưới */
+            max-width: 1400px;
+            border-radius: 20px;
+            border: 5px solid #1e3c72;        /* BORDER: 5px */
+            border-top: 10px solid #2a5298;   /* BORDER-TOP: 10px dày hơn */
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .footer h3 {
+            color: #1e3c72;
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        .footer p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.1em;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 15px 35px;               /* PADDING: 15px trên/dưới, 35px trái/phải */
+            margin: 10px;                     /* MARGIN: 10px */
+            border: 3px solid transparent;    /* BORDER: 3px transparent */
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2a5298, #1e3c72);
+            color: white;
+            border-color: #1e3c72;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(30, 60, 114, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #2a5298;
+            border-color: #2a5298;
+        }
+
+        .btn-secondary:hover {
+            background: #2a5298;
+            color: white;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            background: #e9ecef;
+            padding: 5px;
+            margin: 20px 0;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+        }
+
+        .progress-bar {
+            background: linear-gradient(135deg, #2a5298, #1e3c72);
+            height: 30px;
+            border-radius: 8px;
+            transition: width 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header, .topic-selector, .flashcards-section, .quiz-section, .vocab-list-section, .footer {
+                padding: 25px;
+            }
+
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        /* Hidden */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- ==================== BOX 1: HEADER ==================== -->
+    <header class="header">
+        <h1>📚 IELTS Vocabulary Master</h1>
+        <p class="subtitle">Nâng cao từ vựng IELTS với Flashcards & Quiz tương tác</p>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number" id="totalWords">500+</div>
+                <div class="stat-label">Từ vựng</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="learned">0</div>
+                <div class="stat-label">Đã học</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="quizScore">0%</div>
+                <div class="stat-label">Điểm Quiz</div>
+            </div>
+        </div>
+
+        <div class="box-info">
+            <strong>📦 BOX 1 - HEADER | Box Model:</strong><br>
+            • <strong>Padding:</strong> 40px (trên/dưới) + 60px (trái/phải) = Không gian rộng rãi cho stats<br>
+            • <strong>Margin:</strong> 0 auto 50px = Căn giữa + khoảng cách lớn với phần dưới<br>
+            • <strong>Border:</strong> 5px (xung quanh) + 10px bottom = Viền dày, accent dưới nhấn mạnh
+        </div>
+    </header>
+
+    <!-- ==================== BOX 2: TOPIC SELECTOR ==================== -->
+    <section class="topic-selector">
+        <h2>🎯 Chọn Chủ Đề IELTS</h2>
+        <p style="color: #666; margin-bottom: 20px;">
+            Chọn chủ đề phù hợp với mục tiêu học tập của bạn
+        </p>
+
+        <div class="topics-grid">
+            <div class="topic-card active" onclick="selectTopic('academic', this)">
+                <div class="topic-icon">🎓</div>
+                <h3>Academic</h3>
+                <p>Từ vựng học thuật</p>
+            </div>
+
+            <div class="topic-card" onclick="selectTopic('business', this)">
+                <div class="topic-icon">💼</div>
+                <h3>Business</h3>
+                <p>Kinh doanh & công việc</p>
+            </div>
+
+            <div class="topic-card" onclick="selectTopic('environment', this)">
+                <div class="topic-icon">🌍</div>
+                <h3>Environment</h3>
+                <p>Môi trường & thiên nhiên</p>
+            </div>
+
+            <div class="topic-card" onclick="selectTopic('technology', this)">
+                <div class="topic-icon">💻</div>
+                <h3>Technology</h3>
+                <p>Công nghệ hiện đại</p>
+            </div>
+
+            <div class="topic-card" onclick="selectTopic('health', this)">
+                <div class="topic-icon">🏥</div>
+                <h3>Health</h3>
+                <p>Sức khỏe & y tế</p>
+            </div>
+
+            <div class="topic-card" onclick="selectTopic('culture', this)">
+                <div class="topic-icon">🎭</div>
+                <h3>Culture</h3>
+                <p>Văn hóa & xã hội</p>
+            </div>
+        </div>
+
+        <div class="box-info" style="margin-top: 30px;">
+            <strong>📦 BOX 2 - TOPIC SELECTOR | Box Model:</strong><br>
+            • <strong>Container Padding:</strong> 35px = Không gian cho topic cards<br>
+            • <strong>Container Margin:</strong> 0 auto 50px = Căn giữa<br>
+            • <strong>Container Border:</strong> 4px + 8px left (accent navy) = Điểm nhấn bên trái<br>
+            • <strong>Topic Card Padding:</strong> 25px/20px = Không gian cho icon + text<br>
+            • <strong>Topic Card Border:</strong> 3px + 6px left accent = Tạo hierarchy
+        </div>
+    </section>
+
+    <!-- ==================== BOX 3: FLASHCARDS ==================== -->
+    <section class="flashcards-section">
+        <h2>🎴 Flashcards - Học Từ Vựng</h2>
+        <p style="color: #666; text-align: center; margin-bottom: 20px;">
+            Click vào thẻ để xem nghĩa tiếng Việt
+        </p>
+
+        <div class="flashcard-container">
+            <div class="flashcard" id="flashcard" onclick="flipCard()">
+                <div class="flashcard-front">
+                    <div class="flashcard-word" id="cardWord">Academic</div>
+                    <div class="flashcard-phonetic" id="cardPhonetic">/ˌækəˈdemɪk/</div>
+                    <div class="flashcard-type" id="cardType">(adj)</div>
+                    <p style="color: #e0e7ff; margin-top: 20px;">Click để xem nghĩa →</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flashcard-controls">
+            <button class="btn btn-secondary" onclick="previousCard()">← Trước</button>
+            <button class="btn btn-secondary" onclick="nextCard()">Sau →</button>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="flashcardProgress" style="width: 0%">0/10</div>
+        </div>
+
+        <div class="box-info" style="margin-top: 30px;">
+            <strong>📦 BOX 3 - FLASHCARDS | Box Model:</strong><br>
+            • <strong>Section Padding:</strong> 40px = Không gian cho flashcard lớn<br>
+            • <strong>Section Border:</strong> 4px + 10px top accent = Nhấn mạnh phía trên<br>
+            • <strong>Flashcard Padding:</strong> 60px/40px = Padding LỚN NHẤT để text thoáng<br>
+            • <strong>Flashcard Border:</strong> 6px = Border dày, tạo cảm giác "thẻ thật"<br>
+            • <strong>Min-height:</strong> 300px = Đảm bảo kích thước nhất quán
+        </div>
+    </section>
+
+    <!-- ==================== BOX 4: QUIZ ==================== -->
+    <section class="quiz-section">
+        <h2>✅ Quiz - Kiểm Tra Kiến Thức</h2>
+        <p style="color: #666; margin-bottom: 20px;">
+            Chọn nghĩa đúng của từ vựng
+        </p>
+
+        <div class="quiz-container" id="quizContainer">
+            <div class="question-card">
+                <div class="question-text" id="quizQuestion">
+                    "Substantial" có nghĩa là gì?
+                </div>
+                <div class="options-grid" id="quizOptions">
+                    <button class="option-btn" onclick="checkAnswer(this, true)">
+                        A. Đáng kể, lớn lao
+                    </button>
+                    <button class="option-btn" onclick="checkAnswer(this, false)">
+                        B. Nhỏ nhặt, tầm thường
+                    </button>
+                    <button class="option-btn" onclick="checkAnswer(this, false)">
+                        C. Tạm thời, không lâu dài
+                    </button>
+                    <button class="option-btn" onclick="checkAnswer(this, false)">
+                        D. Khó hiểu, phức tạp
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="quizProgress" style="width: 0%">Câu 0/5</div>
+        </div>
+
+        <div class="box-info" style="margin-top: 30px;">
+            <strong>📦 BOX 4 - QUIZ SECTION | Box Model:</strong><br>
+            • <strong>Section Padding:</strong> 40px<br>
+            • <strong>Section Border:</strong> 4px + 8px left accent<br>
+            • <strong>Question Card Padding:</strong> 30px = Không gian cho câu hỏi + options<br>
+            • <strong>Question Card Border:</strong> 3px + 6px top accent = Nhấn mạnh đầu câu hỏi<br>
+            • <strong>Option Button Padding:</strong> 18px/25px = Dễ click, mobile-friendly<br>
+            • <strong>Option Button Border:</strong> 3px = Viền rõ ràng
+        </div>
+    </section>
+
+    <!-- ==================== BOX 5: VOCABULARY LIST ==================== -->
+    <section class="vocab-list-section">
+        <h2>📖 Danh Sách Từ Vựng</h2>
+        <p style="color: #666; margin-bottom: 25px;">
+            Tất cả từ vựng trong chủ đề đã chọn
+        </p>
+
+        <div id="vocabList">
+            <div class="vocab-item">
+                <div class="vocab-word">Academic</div>
+                <div class="vocab-phonetic">/ˌækəˈdemɪk/</div>
+                <div class="vocab-definition">
+                    (tính từ) Thuộc về học thuật, liên quan đến giáo dục
+                </div>
+                <div class="vocab-example">
+                    "She has excellent academic qualifications."
+                </div>
+            </div>
+
+            <div class="vocab-item">
+                <div class="vocab-word">Comprehensive</div>
+                <div class="vocab-phonetic">/ˌkɒmprɪˈhensɪv/</div>
+                <div class="vocab-definition">
+                    (tính từ) Toàn diện, bao quát, đầy đủ
+                </div>
+                <div class="vocab-example">
+                    "The report provides a comprehensive analysis of the issue."
+                </div>
+            </div>
+
+            <div class="vocab-item">
+                <div class="vocab-word">Substantial</div>
+                <div class="vocab-phonetic">/səbˈstænʃl/</div>
+                <div class="vocab-definition">
+                    (tính từ) Đáng kể, lớn lao, quan trọng
+                </div>
+                <div class="vocab-example">
+                    "There has been substantial progress in the negotiations."
+                </div>
+            </div>
+        </div>
+
+        <div class="box-info" style="margin-top: 30px;">
+            <strong>📦 BOX 5 - VOCABULARY LIST | Box Model:</strong><br>
+            • <strong>Section Padding:</strong> 40px<br>
+            • <strong>Section Border:</strong> 4px + 10px top accent (giống flashcard)<br>
+            • <strong>Vocab Item Padding:</strong> 25px/30px = Nhiều không gian cho definition + example<br>
+            • <strong>Vocab Item Margin:</strong> 0 0 20px 0 = Khoảng cách giữa các items<br>
+            • <strong>Vocab Item Border:</strong> 2px + 6px left accent = Nhẹ nhàng nhưng có điểm nhấn
+        </div>
+    </section>
+
+    <!-- ==================== BOX 6: FOOTER ==================== -->
+    <footer class="footer">
+        <h3>🎓 IELTS Vocabulary Master</h3>
+        <p>Học từ vựng IELTS hiệu quả với Flashcards và Quiz tương tác</p>
+        <p style="margin-top: 15px; color: #999; font-size: 1em;">
+            500+ từ vựng | 6 chủ đề | Flashcards | Quiz | Dự án HTML/CSS
+        </p>
+
+        <div class="box-info" style="margin-top: 25px;">
+            <strong>📦 BOX 6 - FOOTER | Box Model:</strong><br>
+            • <strong>Padding:</strong> 40px/60px = Mirror với header (symmetry)<br>
+            • <strong>Margin:</strong> 50px auto 0 = Khoảng cách lớn với content<br>
+            • <strong>Border:</strong> 5px + 10px top = Đối xứng với header (header: bottom 10px, footer: top 10px)
+        </div>
+    </footer>
+
+    <script>
+        // Vocabulary Database
+        const vocabularyDB = {
+            academic: [
+                { word: "Academic", phonetic: "/ˌækəˈdemɪk/", type: "adj", vi: "Thuộc về học thuật", example: "She has excellent academic qualifications." },
+                { word: "Comprehensive", phonetic: "/ˌkɒmprɪˈhensɪv/", type: "adj", vi: "Toàn diện, bao quát", example: "A comprehensive analysis of the issue." },
+                { word: "Substantial", phonetic: "/səbˈstænʃl/", type: "adj", vi: "Đáng kể, lớn lao", example: "Substantial progress in the negotiations." },
+                { word: "Significant", phonetic: "/sɪɡˈnɪfɪkənt/", type: "adj", vi: "Quan trọng, đáng kể", example: "A significant improvement in results." },
+                { word: "Theoretical", phonetic: "/θɪəˈretɪkl/", type: "adj", vi: "Thuộc về lý thuyết", example: "Theoretical knowledge is important." },
+                { word: "Empirical", phonetic: "/ɪmˈpɪrɪkl/", type: "adj", vi: "Dựa trên thực nghiệm", example: "Empirical evidence supports this theory." },
+                { word: "Methodology", phonetic: "/ˌmeθəˈdɒlədʒi/", type: "n", vi: "Phương pháp luận", example: "The research methodology was rigorous." },
+                { word: "Hypothesis", phonetic: "/haɪˈpɒθəsɪs/", type: "n", vi: "Giả thuyết", example: "We need to test this hypothesis." },
+                { word: "Analysis", phonetic: "/əˈnæləsɪs/", type: "n", vi: "Phân tích", example: "Statistical analysis of the data." },
+                { word: "Curriculum", phonetic: "/kəˈrɪkjələm/", type: "n", vi: "Chương trình giảng dạy", example: "The school curriculum includes math and science." }
+            ],
+            business: [
+                { word: "Entrepreneur", phonetic: "/ˌɒntrəprəˈnɜː(r)/", type: "n", vi: "Doanh nhân", example: "She's a successful entrepreneur." },
+                { word: "Investment", phonetic: "/ɪnˈvestmənt/", type: "n", vi: "Đầu tư", example: "The company made a wise investment." },
+                { word: "Revenue", phonetic: "/ˈrevənjuː/", type: "n", vi: "Doanh thu", example: "Annual revenue increased by 20%." },
+                { word: "Competitive", phonetic: "/kəmˈpetətɪv/", type: "adj", vi: "Cạnh tranh", example: "The market is highly competitive." },
+                { word: "Stakeholder", phonetic: "/ˈsteɪkhəʊldə(r)/", type: "n", vi: "Bên liên quan", example: "All stakeholders agreed to the plan." }
+            ],
+            environment: [
+                { word: "Sustainable", phonetic: "/səˈsteɪnəbl/", type: "adj", vi: "Bền vững", example: "Sustainable development is crucial." },
+                { word: "Biodiversity", phonetic: "/ˌbaɪəʊdaɪˈvɜːsəti/", type: "n", vi: "Đa dạng sinh học", example: "Protecting biodiversity is important." },
+                { word: "Conservation", phonetic: "/ˌkɒnsəˈveɪʃn/", type: "n", vi: "Bảo tồn", example: "Wildlife conservation efforts." },
+                { word: "Ecosystem", phonetic: "/ˈiːkəʊsɪstəm/", type: "n", vi: "Hệ sinh thái", example: "The forest ecosystem is fragile." },
+                { word: "Renewable", phonetic: "/rɪˈnjuːəbl/", type: "adj", vi: "Tái tạo được", example: "Renewable energy sources." }
+            ],
+            technology: [
+                { word: "Innovation", phonetic: "/ˌɪnəˈveɪʃn/", type: "n", vi: "Sự đổi mới", example: "Technological innovation drives progress." },
+                { word: "Artificial", phonetic: "/ˌɑːtɪˈfɪʃl/", type: "adj", vi: "Nhân tạo", example: "Artificial intelligence is advancing rapidly." },
+                { word: "Automation", phonetic: "/ˌɔːtəˈmeɪʃn/", type: "n", vi: "Tự động hóa", example: "Factory automation improves efficiency." },
+                { word: "Digital", phonetic: "/ˈdɪdʒɪtl/", type: "adj", vi: "Kỹ thuật số", example: "The digital revolution changed everything." },
+                { word: "Algorithm", phonetic: "/ˈælɡərɪðəm/", type: "n", vi: "Thuật toán", example: "The algorithm processes data quickly." }
+            ],
+            health: [
+                { word: "Nutritious", phonetic: "/njuˈtrɪʃəs/", type: "adj", vi: "Bổ dưỡng", example: "A nutritious diet is essential." },
+                { word: "Prevention", phonetic: "/prɪˈvenʃn/", type: "n", vi: "Phòng ngừa", example: "Prevention is better than cure." },
+                { word: "Immune", phonetic: "/ɪˈmjuːn/", type: "adj", vi: "Miễn dịch", example: "A strong immune system." },
+                { word: "Diagnosis", phonetic: "/ˌdaɪəɡˈnəʊsɪs/", type: "n", vi: "Chẩn đoán", example: "Early diagnosis saves lives." },
+                { word: "Treatment", phonetic: "/ˈtriːtmənt/", type: "n", vi: "Điều trị", example: "Medical treatment is improving." }
+            ],
+            culture: [
+                { word: "Heritage", phonetic: "/ˈherɪtɪdʒ/", type: "n", vi: "Di sản", example: "Cultural heritage must be preserved." },
+                { word: "Traditional", phonetic: "/trəˈdɪʃənl/", type: "adj", vi: "Truyền thống", example: "Traditional customs and values." },
+                { word: "Diversity", phonetic: "/daɪˈvɜːsəti/", type: "n", vi: "Sự đa dạng", example: "Cultural diversity enriches society." },
+                { word: "Contemporary", phonetic: "/kənˈtemprəri/", type: "adj", vi: "Đương đại", example: "Contemporary art and culture." },
+                { word: "Indigenous", phonetic: "/ɪnˈdɪdʒənəs/", type: "adj", vi: "Bản địa", example: "Indigenous peoples and their traditions." }
+            ]
+        };
+
+        // Current state
+        let currentTopic = 'academic';
+        let currentCardIndex = 0;
+        let learnedWords = 0;
+        let quizCurrentQuestion = 0;
+        let quizCorrect = 0;
+
+        // Topic Selection
+        function selectTopic(topic, element) {
+            currentTopic = topic;
+            currentCardIndex = 0;
+            
+            // Update active state
+            document.querySelectorAll('.topic-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            element.classList.add('active');
+            
+            // Update flashcard
+            updateFlashcard();
+            
+            // Update vocabulary list
+            updateVocabList();
+            
+            // Reset quiz
+            quizCurrentQuestion = 0;
+            quizCorrect = 0;
+            updateQuiz();
+        }
+
+        // Flashcard functions
+        function updateFlashcard() {
+            const words = vocabularyDB[currentTopic];
+            const word = words[currentCardIndex];
+            
+            document.getElementById('cardWord').textContent = word.word;
+            document.getElementById('cardPhonetic').textContent = word.phonetic;
+            document.getElementById('cardType').textContent = `(${word.type})`;
+            
+            // Reset flip
+            document.getElementById('flashcard').classList.remove('flipped');
+            
+            // Update progress
+            const progress = ((currentCardIndex + 1) / words.length) * 100;
+            document.getElementById('flashcardProgress').style.width = progress + '%';
+            document.getElementById('flashcardProgress').textContent = `${currentCardIndex + 1}/${words.length}`;
+        }
+
+        function flipCard() {
+            const flashcard = document.getElementById('flashcard');
+            const words = vocabularyDB[currentTopic];
+            const word = words[currentCardIndex];
+            
+            if (flashcard.classList.contains('flipped')) {
+                flashcard.classList.remove('flipped');
+                flashcard.querySelector('.flashcard-front').innerHTML = `
+                    <div class="flashcard-word">${word.word}</div>
+                    <div class="flashcard-phonetic">${word.phonetic}</div>
+                    <div class="flashcard-type">(${word.type})</div>
+                    <p style="color: #e0e7ff; margin-top: 20px;">Click để xem nghĩa →</p>
+                `;
+            } else {
+                flashcard.classList.add('flipped');
+                flashcard.querySelector('.flashcard-front').innerHTML = `
+                    <div class="flashcard-definition">${word.vi}</div>
+                    <div class="flashcard-example">"${word.example}"</div>
+                    <p style="color: #e0e7ff; margin-top: 20px;">Click để xem lại từ ←</p>
+                `;
+                
+                // Increment learned
+                if (!word.learned) {
+                    word.learned = true;
+                    learnedWords++;
+                    document.getElementById('learned').textContent = learnedWords;
+                }
+            }
+        }
+
+        function nextCard() {
+            const words = vocabularyDB[currentTopic];
+            currentCardIndex = (currentCardIndex + 1) % words.length;
+            updateFlashcard();
+        }
+
+        function previousCard() {
+            const words = vocabularyDB[currentTopic];
+            currentCardIndex = (currentCardIndex - 1 + words.length) % words.length;
+            updateFlashcard();
+        }
+
+        // Quiz functions
+        function updateQuiz() {
+            const words = vocabularyDB[currentTopic];
+            if (quizCurrentQuestion >= 5) {
+                // Quiz complete
+                const score = Math.round((quizCorrect / 5) * 100);
+                document.getElementById('quizScore').textContent = score + '%';
+                document.getElementById('quizContainer').innerHTML = `
+                    <div class="question-card" style="text-align: center; padding: 50px;">
+                        <h2 style="color: #1e3c72; font-size: 2.5em; margin-bottom: 20px;">🎉 Hoàn Thành!</h2>
+                        <p style="font-size: 1.5em; color: #2a5298; margin-bottom: 30px;">
+                            Điểm số: ${quizCorrect}/5 (${score}%)
+                        </p>
+                        <button class="btn btn-primary" onclick="resetQuiz()">Làm Lại Quiz</button>
+                    </div>
+                `;
+                return;
+            }
+            
+            const word = words[quizCurrentQuestion];
+            const options = generateOptions(word, words);
+            
+            document.getElementById('quizQuestion').textContent = `"${word.word}" có nghĩa là gì?`;
+            
+            let optionsHTML = '';
+            const letters = ['A', 'B', 'C', 'D'];
+            options.forEach((option, index) => {
+                const isCorrect = option === word.vi;
+                optionsHTML += `
+                    <button class="option-btn" onclick="checkAnswer(this, ${isCorrect})">
+                        ${letters[index]}. ${option}
+                    </button>
+                `;
+            });
+            
+            document.getElementById('quizOptions').innerHTML = optionsHTML;
+            
+            // Update progress
+            const progress = (quizCurrentQuestion / 5) * 100;
+            document.getElementById('quizProgress').style.width = progress + '%';
+            document.getElementById('quizProgress').textContent = `Câu ${quizCurrentQuestion + 1}/5`;
+        }
+
+        function generateOptions(correctWord, allWords) {
+            const options = [correctWord.vi];
+            const otherWords = allWords.filter(w => w.word !== correctWord.word);
+            
+            while (options.length < 4 && otherWords.length > 0) {
+                const randomIndex = Math.floor(Math.random() * otherWords.length);
+                const randomOption = otherWords[randomIndex].vi;
+                if (!options.includes(randomOption)) {
+                    options.push(randomOption);
+                }
+                otherWords.splice(randomIndex, 1);
+            }
+            
+            // Shuffle
+            return options.sort(() => Math.random() - 0.5);
+        }
+
+        function checkAnswer(button, isCorrect) {
+            // Disable all buttons
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.add('disabled');
+                btn.style.cursor = 'not-allowed';
+            });
+            
+            if (isCorrect) {
+                button.classList.add('correct');
+                quizCorrect++;
+            } else {
+                button.classList.add('incorrect');
+                // Highlight correct answer
+                document.querySelectorAll('.option-btn').forEach(btn => {
+                    if (!btn.classList.contains('incorrect') && !btn.classList.contains('correct')) {
+                        // This is the correct one
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+            
+            // Next question after delay
+            setTimeout(() => {
+                quizCurrentQuestion++;
+                updateQuiz();
+            }, 1500);
+        }
+
+        function resetQuiz() {
+            quizCurrentQuestion = 0;
+            quizCorrect = 0;
+            updateQuiz();
+        }
+
+        // Vocabulary list
+        function updateVocabList() {
+            const words = vocabularyDB[currentTopic];
+            let html = '';
+            
+            words.forEach(word => {
+                html += `
+                    <div class="vocab-item">
+                        <div class="vocab-word">${word.word}</div>
+                        <div class="vocab-phonetic">${word.phonetic}</div>
+                        <div class="vocab-definition">
+                            (${word.type}) ${word.vi}
+                        </div>
+                        <div class="vocab-example">
+                            "${word.example}"
+                        </div>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('vocabList').innerHTML = html;
+        }
+
+        // Initialize
+        updateFlashcard();
+        updateVocabList();
+        updateQuiz();
+    </script>
+</DOCTYPE>
