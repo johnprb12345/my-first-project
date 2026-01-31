@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> CV Decoration - Tạo CV đẹp Cho Học Sinh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        /* ==================== BOX 1: HEADER ==================== */
+        .header {
+            background: white;
+            padding: 35px 50px;              /* PADDING: 35px trên/dưới, 50px trái/phải */
+            margin: 0 auto 40px;              /* MARGIN: 0 trên, auto trái/phải (căn giữa), 40px dưới */
+            max-width: 1400px;
+            border-radius: 15px;
+            border: 4px solid #667eea;        /* BORDER: viền 4px màu tím */
+            border-bottom: 8px solid #764ba2; /* BORDER-BOTTOM: viền dưới dày hơn (8px) */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 2.8em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.2em;
+        }
+
+        /* Highlight box model */
+        .box-info {
+            background: #fff9e6;
+            border: 2px dashed #f39c12;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #856404;
+            text-align: left;
+        }
+
+        .box-info strong {
+            color: #f39c12;
+        }
+
+        /* ==================== BOX 2: FORM CONTAINER ==================== */
+        .form-container {
+            background: white;
+            padding: 40px;                    /* PADDING: 40px tất cả hướng */
+            margin: 0 auto 40px;              /* MARGIN: 0 trên, auto trái/phải, 40px dưới */
+            max-width: 1400px;
+            border-radius: 15px;
+            border: 3px solid #e0e7ff;        /* BORDER: viền 3px màu tím nhạt */
+            border-left: 6px solid #667eea;   /* BORDER-LEFT: viền trái dày hơn (6px) - accent */
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .form-container h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 25px;              /* MARGIN-BOTTOM: khoảng cách với form */
+            padding-bottom: 15px;             /* PADDING-BOTTOM: khoảng cách nội bộ */
+            border-bottom: 3px solid #764ba2; /* BORDER-BOTTOM: đường kẻ phân cách */
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        /* ==================== BOX 3: INPUT GROUPS ==================== */
+        .input-group {
+            background: #f8f9fa;
+            padding: 20px;                    /* PADDING: 20px tất cả hướng */
+            margin: 10px 0;                   /* MARGIN: 10px trên/dưới, 0 trái/phải */
+            border: 2px solid #e9ecef;        /* BORDER: viền 2px */
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .input-group:focus-within {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .input-group label {
+            display: block;
+            color: #495057;
+            font-weight: 600;
+            margin-bottom: 8px;               /* MARGIN-BOTTOM: khoảng cách với input */
+            font-size: 0.95em;
+        }
+
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 12px 15px;               /* PADDING: 12px trên/dưới, 15px trái/phải */
+            border: 2px solid #ced4da;        /* BORDER: viền 2px */
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+            margin: 0;                        /* MARGIN: reset về 0 */
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .input-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* ==================== BOX 4: ACTION BUTTONS ==================== */
+        .action-buttons {
+            background: #f0f4ff;
+            padding: 30px;                    /* PADDING: 30px tất cả hướng */
+            margin: 30px 0;                   /* MARGIN: 30px trên/dưới */
+            border: 3px solid #667eea;        /* BORDER: viền 3px */
+            border-radius: 12px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 35px;               /* PADDING: 15px trên/dưới, 35px trái/phải */
+            margin: 5px;                      /* MARGIN: 5px xung quanh */
+            border: 3px solid transparent;    /* BORDER: viền 3px trong suốt */
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: #667eea;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border-color: #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* ==================== BOX 5: CV PREVIEW ==================== */
+        .cv-preview {
+            background: white;
+            padding: 50px;                    /* PADDING: 50px tất cả hướng - nhiều để tạo không gian */
+            margin: 0 auto;                   /* MARGIN: 0 trên/dưới, auto trái/phải */
+            max-width: 900px;
+            border: 4px solid #667eea;        /* BORDER: viền 4px */
+            border-top: 10px solid #764ba2;   /* BORDER-TOP: viền trên rất dày (10px) */
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            min-height: 400px;
+        }
+
+        .cv-preview h2 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #764ba2;
+        }
+
+        /* CV Content Styling */
+        .cv-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 25px;                    /* PADDING: 25px */
+            background: linear-gradient(135deg, #667eea15, #764ba215);
+            border-radius: 10px;
+            border: 2px solid #e0e7ff;        /* BORDER: 2px */
+        }
+
+        .cv-header h3 {
+            color: #667eea;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        .cv-header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .cv-section {
+            margin-bottom: 25px;
+            padding: 20px;                    /* PADDING: 20px */
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;   /* BORDER-LEFT: accent 5px */
+            border-radius: 8px;
+        }
+
+        .cv-section h4 {
+            color: #764ba2;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e7ff;
+        }
+
+        .cv-section p {
+            color: #495057;
+            line-height: 1.8;
+            margin: 8px 0;
+        }
+
+        .cv-section ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .cv-section li {
+            color: #495057;
+            line-height: 1.8;
+            margin-bottom: 8px;
+        }
+
+        /* ==================== BOX 6: FOOTER ==================== */
+        .footer {
+            background: white;
+            padding: 35px 50px;               /* PADDING: 35px trên/dưới, 50px trái/phải */
+            margin: 40px auto 0;              /* MARGIN: 40px trên, auto trái/phải, 0 dưới */
+            max-width: 1400px;
+            border-radius: 15px;
+            border: 4px solid #667eea;        /* BORDER: viền 4px */
+            border-top: 8px solid #764ba2;    /* BORDER-TOP: viền trên dày hơn (8px) */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .footer h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .footer p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header, .form-container, .cv-preview, .footer {
+                padding: 25px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Hidden class */
+        .hidden {
+            display: none;
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .header, .form-container, .action-buttons, .footer, .box-info {
+                display: none;
+            }
+            
+            .cv-preview {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                margin: 0;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ==================== BOX 1: HEADER ==================== -->
+    <header class="header">
+        <h1>📄 CV Builder - Tạo CV Tự Động</h1>
+        <p>Công cụ tạo CV chuyên nghiệp dành cho học sinh</p>
+        <div class="box-info">
+            <strong>📦 BOX 1 - HEADER | Box Model:</strong><br>
+            • <strong>Padding:</strong> 35px (trên/dưới) + 50px (trái/phải) = Tạo không gian rộng rãi cho tiêu đề<br>
+            • <strong>Margin:</strong> 0 (trên) + auto (trái/phải - căn giữa) + 40px (dưới) = Căn giữa và tạo khoảng cách<br>
+            • <strong>Border:</strong> 4px (xung quanh) + 8px bottom = Viền tạo khung, bottom dày hơn nhấn mạnh
+        </div>
+    </header>
+
+    <!-- ==================== BOX 2: FORM CONTAINER ==================== -->
+    <div class="form-container">
+        <h2>Điền Thông Tin Của Bạn</h2>
+        
+        <form id="cvForm">
+            <div class="form-grid">
+                <!-- BOX 3: Input Groups -->
+                <div class="input-group">
+                    <label for="fullName">Họ và Tên *</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Nguyễn Văn A" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" placeholder="email@example.com" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="phone">Số Điện Thoại *</label>
+                    <input type="tel" id="phone" name="phone" placeholder="0123456789" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="address">Địa Chỉ</label>
+                    <input type="text" id="address" name="address" placeholder="Thành phố, Quốc gia">
+                </div>
+
+                <div class="input-group">
+                    <label for="school">Trường Học *</label>
+                    <input type="text" id="school" name="school" placeholder="THPT ABC" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="grade">Lớp *</label>
+                    <input type="text" id="grade" name="grade" placeholder="12A1" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="objective">Mục Tiêu Nghề Nghiệp</label>
+                <textarea id="objective" name="objective" placeholder="Mô tả mục tiêu nghề nghiệp của bạn..."></textarea>
+            </div>
+
+            <div class="input-group">
+                <label for="skills">Kỹ Năng (mỗi kỹ năng một dòng)</label>
+                <textarea id="skills" name="skills" placeholder="HTML, CSS, JavaScript
+Photoshop
+Tiếng Anh giao tiếp"></textarea>
+            </div>
+
+            <div class="input-group">
+                <label for="experience">Kinh Nghiệm / Hoạt Động</label>
+                <textarea id="experience" name="experience" placeholder="Mô tả kinh nghiệm, hoạt động ngoại khóa..."></textarea>
+            </div>
+
+            <div class="input-group">
+                <label for="awards">Giải Thưởng / Chứng Chỉ</label>
+                <textarea id="awards" name="awards" placeholder="Liệt kê các giải thưởng, chứng chỉ..."></textarea>
+            </div>
+        </form>
+
+        <div class="box-info">
+            <strong>📦 BOX 2 - FORM CONTAINER | Box Model:</strong><br>
+            • <strong>Padding:</strong> 40px = Tạo không gian nội bộ cho form<br>
+            • <strong>Margin:</strong> 0 auto 40px = Căn giữa + khoảng cách dưới<br>
+            • <strong>Border:</strong> 3px (xung quanh) + 6px left (accent) = Tạo điểm nhấn bên trái
+        </div>
+        
+        <div class="box-info" style="margin-top: 20px;">
+            <strong>📦 BOX 3 - INPUT GROUP | Box Model:</strong><br>
+            • <strong>Padding:</strong> 20px = Tạo không gian cho label và input<br>
+            • <strong>Margin:</strong> 10px (trên/dưới) = Khoảng cách giữa các input groups<br>
+            • <strong>Border:</strong> 2px = Viền mỏng, khi focus sẽ đổi màu
+        </div>
+
+        <!-- BOX 4: Action Buttons -->
+        <div class="action-buttons">
+            <button type="button" class="btn btn-primary" onclick="generateCV()">🎨 Tạo CV</button>
+            <button type="button" class="btn btn-secondary" onclick="resetForm()">🔄 Làm Mới</button>
+            <button type="button" class="btn btn-secondary" onclick="window.print()">🖨️ In CV</button>
+        </div>
+
+        <div class="box-info">
+            <strong>📦 BOX 4 - ACTION BUTTONS | Box Model:</strong><br>
+            • <strong>Container Padding:</strong> 30px = Không gian xung quanh các button<br>
+            • <strong>Container Margin:</strong> 30px (trên/dưới) = Tách biệt khỏi form<br>
+            • <strong>Container Border:</strong> 3px = Tạo khung cho khu vực button<br>
+            • <strong>Button Padding:</strong> 15px (trên/dưới) + 35px (trái/phải) = Nút to, dễ nhấn<br>
+            • <strong>Button Margin:</strong> 5px = Khoảng cách nhỏ giữa các nút<br>
+            • <strong>Button Border:</strong> 3px = Viền tạo chiều sâu
+        </div>
+    </div>
+
+    <!-- ==================== BOX 5: CV PREVIEW ==================== -->
+    <div class="cv-preview hidden" id="cvPreview">
+        <h2>📋 Xem Trước CV</h2>
+        
+        <div class="cv-header" id="cvHeader">
+            <!-- CV header will be generated here -->
+        </div>
+
+        <div class="cv-section" id="cvObjective">
+            <!-- Objective section -->
+        </div>
+
+        <div class="cv-section" id="cvEducation">
+            <!-- Education section -->
+        </div>
+
+        <div class="cv-section" id="cvSkills">
+            <!-- Skills section -->
+        </div>
+
+        <div class="cv-section" id="cvExperience">
+            <!-- Experience section -->
+        </div>
+
+        <div class="cv-section" id="cvAwards">
+            <!-- Awards section -->
+        </div>
+
+        <div class="box-info">
+            <strong>📦 BOX 5 - CV PREVIEW | Box Model:</strong><br>
+            • <strong>Padding:</strong> 50px = Padding lớn nhất (như tờ giấy thật)<br>
+            • <strong>Margin:</strong> 0 auto = Căn giữa hoàn hảo<br>
+            • <strong>Border:</strong> 4px (xung quanh) + 10px top = Viền top rất dày tạo header accent
+        </div>
+    </div>
+
+    <!-- ==================== BOX 6: FOOTER ==================== -->
+    <footer class="footer">
+        <h3>🎓 CV Builder - Dự Án Học Tập</h3>
+        <p>Công cụ tạo CV tự động giúp học sinh dễ dàng tạo CV chuyên nghiệp</p>
+        <p style="margin-top: 15px; color: #999; font-size: 0.9em;">
+            Phân tích Box Model chi tiết | Dự án HTML/CSS
+        </p>
+        <div class="box-info">
+            <strong>📦 BOX 6 - FOOTER | Box Model:</strong><br>
+            • <strong>Padding:</strong> 35px + 50px = Giống header tạo cân đối<br>
+            • <strong>Margin:</strong> 40px (trên) + auto (trái/phải) + 0 (dưới)<br>
+            • <strong>Border:</strong> 4px + 8px top = Mirror với header (symmetry)
+        </div>
+    </footer>
+
+    <script>
+        function generateCV() {
+            // Get form data
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const school = document.getElementById('school').value;
+            const grade = document.getElementById('grade').value;
+            const objective = document.getElementById('objective').value;
+            const skills = document.getElementById('skills').value;
+            const experience = document.getElementById('experience').value;
+            const awards = document.getElementById('awards').value;
+
+            // Validate required fields
+            if (!fullName || !email || !phone || !school || !grade) {
+                alert('Vui lòng điền đầy đủ các trường bắt buộc (*)');
+                return;
+            }
+
+            // Generate CV Header
+            document.getElementById('cvHeader').innerHTML = `
+                <h3>${fullName}</h3>
+                <p>📧 ${email} | 📱 ${phone}${address ? ' | 📍 ' + address : ''}</p>
+            `;
+
+            // Generate Objective
+            if (objective) {
+                document.getElementById('cvObjective').innerHTML = `
+                    <h4>🎯 Mục Tiêu Nghề Nghiệp</h4>
+                    <p>${objective}</p>
+                `;
+                document.getElementById('cvObjective').classList.remove('hidden');
+            } else {
+                document.getElementById('cvObjective').classList.add('hidden');
+            }
+
+            // Generate Education
+            document.getElementById('cvEducation').innerHTML = `
+                <h4>🎓 Học Vấn</h4>
+                <p><strong>${school}</strong> - Lớp ${grade}</p>
+            `;
+
+            // Generate Skills
+            if (skills) {
+                const skillsList = skills.split('\n').filter(s => s.trim());
+                const skillsHTML = skillsList.map(skill => `<li>${skill}</li>`).join('');
+                document.getElementById('cvSkills').innerHTML = `
+                    <h4>💡 Kỹ Năng</h4>
+                    <ul>${skillsHTML}</ul>
+                `;
+                document.getElementById('cvSkills').classList.remove('hidden');
+            } else {
+                document.getElementById('cvSkills').classList.add('hidden');
+            }
+
+            // Generate Experience
+            if (experience) {
+                document.getElementById('cvExperience').innerHTML = `
+                    <h4>💼 Kinh Nghiệm & Hoạt Động</h4>
+                    <p>${experience.replace(/\n/g, '<br>')}</p>
+                `;
+                document.getElementById('cvExperience').classList.remove('hidden');
+            } else {
+                document.getElementById('cvExperience').classList.add('hidden');
+            }
+
+            // Generate Awards
+            if (awards) {
+                document.getElementById('cvAwards').innerHTML = `
+                    <h4>🏆 Giải Thưởng & Chứng Chỉ</h4>
+                    <p>${awards.replace(/\n/g, '<br>')}</p>
+                `;
+                document.getElementById('cvAwards').classList.remove('hidden');
+            } else {
+                document.getElementById('cvAwards').classList.add('hidden');
+            }
+
+            // Show CV preview
+            document.getElementById('cvPreview').classList.remove('hidden');
+            
+            // Scroll to preview
+            document.getElementById('cvPreview').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function resetForm() {
+            if (confirm('Bạn có chắc muốn xóa tất cả thông tin?')) {
+                document.getElementById('cvForm').reset();
+                document.getElementById('cvPreview').classList.add('hidden');
+            }
+        }
+
+        // Auto-save to localStorage
+        const form = document.getElementById('cvForm');
+        const inputs = form.querySelectorAll('input, textarea');
+        
+        inputs.forEach(input => {
+            // Load saved data
+            const saved = localStorage.getItem(input.id);
+            if (saved) input.value = saved;
+            
+            // Save on change
+            input.addEventListener('input', () => {
+                localStorage.setItem(input.id, input.value);
+            });
+        });
+    </script>
+</body>
+</html>
